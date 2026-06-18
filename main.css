@@ -63,7 +63,7 @@
 body {
   color: var(--default-color);
   background-color: var(--background-color);
-  font-family: var(--default-font);
+  font-family: 'Cairo', var(--default-font) !important; /* تم التعديل لدعم الخط العربي */
 }
 
 img,
@@ -94,7 +94,7 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+  font-family: 'Cairo', var(--heading-font) !important; /* تم التعديل لدعم الخط العربي */
 }
 
 /* PHP Email Form Messages
@@ -765,12 +765,6 @@ h6 {
   box-shadow: 0 15px 35px rgba(52, 183, 167, 0.2);
 }
 
-@media (max-width: 767px) {
-  .contact-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
 .contact .php-email-form {
   background: linear-gradient(180deg, rgba(52, 183, 167, 0.08), rgba(255, 255, 255, 0.2));
   border-radius: 24px;
@@ -797,21 +791,6 @@ h6 {
 
 .contact .php-email-form button:hover {
   background: color-mix(in srgb, var(--accent-color), #ffffff 40%);
-}
-
-@media (max-width: 767px) {
-  .contact-hero {
-    padding: 60px 20px;
-  }
-
-  .contact-hero h2 {
-    font-size: 30px;
-  }
-
-  .contact .info-wrap,
-  .contact .php-email-form {
-    padding: 24px;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -872,14 +851,6 @@ section,
   overflow: clip;
 }
 
-@media (max-width: 1199px) {
-
-  section,
-  .section {
-    scroll-margin-top: 66px;
-  }
-}
-
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
@@ -927,12 +898,6 @@ section,
   justify-content: center;
 }
 
-@media (max-width: 1200px) {
-  .hero {
-    min-height: calc(100vh - 68px);
-  }
-}
-
 .hero img {
   position: absolute;
   inset: 0;
@@ -977,27 +942,6 @@ section,
 
 .hero .btn-get-started:hover {
   background: color-mix(in srgb, var(--accent-color) 90%, white 20%);
-}
-
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 18px;
-  }
-}
-
-@media (max-width: 991px) {
-  .hero {
-    padding: 60px 0;
-  }
-
-  .hero .btn-get-started {
-    width: 100%;
-    text-align: center;
-  }
 }
 
 /*--------------------------------------------------------------
@@ -1255,72 +1199,132 @@ section,
   fill: #f3268c;
 }
 
-/* Responsive adjustments */
+/* ==========================================================================
+   تحسينات التجاوب والتوافقية مع جميع الشاشات والأجهزة (Premium Responsiveness)
+   ========================================================================== */
+
+/* 1. تحسينات الشاشات المتوسطة واللوحية (Tablets & Medium Screens < 991px) */
+@media (max-width: 991px) {
+  section, .section {
+    scroll-margin-top: 66px;
+  }
+  
+  .hero {
+    padding: 60px 0;
+  }
+  
+  /* إلغاء تمدد الزر بشكل كامل للحفاظ على مظهر احترافي */
+  .hero .btn-get-started {
+    width: auto !important; 
+    display: inline-block !important;
+    padding: 12px 40px;
+    margin-top: 20px;
+  }
+  
+  .header .container-fluid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 @media (max-width: 1200px) {
+  .hero {
+    min-height: calc(100vh - 68px);
+  }
   .header {
     padding: 12px 20px;
   }
-
   .header .container-fluid {
     flex-wrap: wrap;
     gap: 12px;
   }
-
   .navmenu ul {
     gap: 10px;
   }
-
   .hero {
     padding: 60px 0;
   }
-
   .service-item {
     padding: 50px 24px;
   }
 }
 
+/* 2. تحسينات شاشات الهواتف الذكية (Smartphones < 768px) */
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
     padding: 40px 0;
   }
-
+  
+  /* ضبط انسيابي لأحجام الخطوط لمنع تداخل النصوص */
   .hero h2 {
-    font-size: 34px;
+    font-size: 32px !important;
   }
-
+  
   .hero p {
-    font-size: 18px;
+    font-size: 18px !important;
+  }
+  
+  .section-title h2 {
+    font-size: 26px !important;
+    padding-bottom: 15px;
+  }
+  
+  .contact-hero {
+    padding: 60px 20px;
+  }
+  
+  .contact-hero h2 {
+    font-size: 24px !important;
   }
 
-  .about .row,
-  .contact .row,
-  .skills .row,
+  /* تنسيق وضبط تمركز صورة البروفايل على الموبايل */
+  .about .img-fluid {
+    display: block;
+    margin: 0 auto 25px auto;
+    max-width: 80%;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* تنظيم انسياب الصفوف البرمجية */
+  .about .row, 
+  .contact .row, 
+  .skills .row, 
   .resume .row {
-    flex-direction: column;
+    flex-direction: column !important;
   }
-
+  
+  .resume .resume-item {
+    padding-left: 15px;
+  }
+  
   .about .img-fluid,
   .service-item,
   .resume .resume-item {
     width: 100%;
   }
 
-  .contact .info-wrap,
-  .contact .php-email-form {
-    padding: 18px;
-  }
-
   .skills .progress .skill {
     font-size: 13px;
   }
+  
+  .contact-cards {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* 3. تحسينات الهواتف الصغيرة جداً (Small Mobile Screens < 576px) */
 @media (max-width: 576px) {
   .header {
     padding: 8px 16px;
   }
-
+  
+  .header .logo h1 {
+    font-size: 24px;
+  }
+  
   .navmenu ul {
     display: none;
     flex-direction: column;
@@ -1350,6 +1354,33 @@ section,
     width: 100%;
     justify-content: flex-start;
   }
-}
 
-/* other styles (portfolio, contact, etc.) kept as in template... */
+  /* إعادة هيكلة بطاقات التواصل لتصبح بطاقة واحدة في كل سطر لشاشات الموبايل الضيقة */
+  .contact-cards {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  
+  .contact-card {
+    padding: 15px !important;
+    gap: 12px;
+  }
+  
+  .contact-card i {
+    font-size: 24px;
+  }
+  
+  .contact-card h4 {
+    font-size: 16px;
+  }
+
+  .contact .info-wrap, 
+  .contact .php-email-form {
+    padding: 20px !important;
+  }
+  
+  /* ضبط الحواف العامة لتوفير مساحة تصفح مريحة */
+  section, .section {
+    padding: 40px 0;
+  }
+}
